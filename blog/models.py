@@ -22,8 +22,6 @@ class Post(models.Model):
     def __str__(self):
         return f"{self.title} | written by {self.author}"
 
-    class Meta:
-        ordering = ["created_on"]
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200, unique=True)
@@ -32,6 +30,7 @@ class Event(models.Model):
 
     def __str__(self):
         return self.event_name
+
 
 class Ticket(models.Model):
     ticket_holder = models.ForeignKey(
@@ -48,6 +47,7 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"Ticket for {self.ticket_holder}"
+
 
 class Comment(models.Model):
     post = models.ForeignKey(
