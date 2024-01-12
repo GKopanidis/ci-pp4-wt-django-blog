@@ -15,11 +15,15 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["created_on"]
+
     def __str__(self):
         return f"{self.title} | written by {self.author}"
 
     class Meta:
-        ordering = ["-created_on", "author"]
+        ordering = ["created_on"]
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200, unique=True)
@@ -53,3 +57,9 @@ class Comment(models.Model):
     body = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"Comment {self.body} by {self.author}"
